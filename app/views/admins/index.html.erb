@@ -1,0 +1,15 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Admins</h1>
+
+<div id="admins">
+  <% @admins.each do |admin| %>
+    <%= render admin %>
+    <p>
+      <%= link_to "Show this admin", admin, class: 'button-style' %>
+    </p>
+    <%= link_to "Back to Home Page", root_path, class: 'button-style' %>
+  <% end %>
+</div>
+
+

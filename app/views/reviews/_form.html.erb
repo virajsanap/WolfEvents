@@ -1,0 +1,34 @@
+<div class="form-container">
+<%= form_with(model: review) do |form| %>
+  <div class="form-field-block">
+    <%= form.label :event_id, 'Select Attended Event:' %>
+    <%= select_tag 'event_id', options_from_collection_for_select(current_user.attended_events, 'id', 'event_name') %>
+  </div>
+
+  <% if review.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
+
+      <ul>
+        <% review.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-field-block">
+    <%= form.label :rating, style: "display: block" %>
+    <%= form.text_field :rating %>
+  </div>
+
+  <div class="form-field-block">
+    <%= form.label :feedback, style: "display: block" %>
+    <%= form.text_field :feedback %>
+  </div>
+
+  <div class="form-field-block">
+    <%= form.submit class: 'styled-submit-button'%>
+  </div>
+<% end %>
+</div>

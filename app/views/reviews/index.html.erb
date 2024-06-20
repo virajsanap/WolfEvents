@@ -1,0 +1,41 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Reviews</h1>
+
+<% if current_user %>
+  <%= link_to "New review", new_review_path, class: 'button-style'%>
+<% end %>
+
+<%= form_tag reviews_path, method: :get, id: 'reviews-filter-form' do %>
+  <label for="filter_type">Filter by:</label>
+  <%= select_tag 'filter_type', options_for_select(['Event Name', 'Attendee Name']), class: 'form-control' %>
+
+  <label for="filter_value">Filter Value:</label>
+  <%= text_field_tag 'filter_value', nil, class: 'form-control' %>
+
+  <%= submit_tag 'Apply Filter', class: 'button-style' %>
+<% end %>
+
+<div id="reviews">
+  <table class="table-style">
+    <tr>
+      <th>Event Name</th>
+      <th>Attendee Name</th>
+      <th>Rating</th>
+      <th>Feedback</th>
+      <th>Action</th>
+    </tr>
+
+    <% @reviews.each do |review| %>
+      <tr>
+        <td><%= Event.find(review.event_id).event_name %></td>
+        <td><%= Attendee.find(review.attendee_id).name %></td>
+        <td><%= review.rating %></td>
+        <td><%= review.feedback %></td>
+        <td><%= link_to "View Review", review, class: 'button-style' %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<%= link_to "Back to Home Page", root_path, class: 'button-style' %>

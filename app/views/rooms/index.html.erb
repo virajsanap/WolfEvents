@@ -1,0 +1,23 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Rooms</h1>
+<div id="rooms">
+    <table class="table-style">
+      <tr>
+        <th>Room ID</th>
+        <th>Room Location</th>
+        <th>Room Capacity</th>
+        <th>Room Link</th>
+      </tr>
+      <% @rooms.each do |room| %>
+      <tr>
+        <td><%= room.id %></td>
+        <td><%= room.room_loc %></td>
+        <td><%= room.room_cap %></td>
+        <td><%= link_to "Show this room", room, class: "button-style" %></td>
+      </tr>
+      <% end %>
+    </table>
+</div>
+<%= link_to "New room", new_room_path, class: 'button-style' %> |
+<%= link_to "Back to Home Page", root_path, class: 'button-style' %><br>

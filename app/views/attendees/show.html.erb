@@ -1,0 +1,16 @@
+<div class="form-container">
+  <p style="color: green"><%= notice %></p>
+  <h1>Your Profile</h1>
+  <%= render @attendee %>
+  <p><strong>User ID:</strong> <%= @attendee.id %></p>
+  <div>
+    <%= link_to "Edit this attendee", edit_attendee_path(@attendee), class: 'button-style' %> |
+    <%= link_to "Back to Home Page", root_path, class: 'button-style' %> <br><br>
+    <% if current_admin %>
+      <%= link_to "Back to attendees", attendees_path, class: 'button-style' %> <br><br>
+      <%= button_to "Remove Attendee", @attendee, method: :delete, class: 'button-style' %> <br>
+    <% else %>
+      <%= button_to "Delete Account", @attendee, method: :delete, class: 'button-style' %>
+    <% end %>
+  </div>
+</div>
